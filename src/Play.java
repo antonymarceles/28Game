@@ -25,6 +25,8 @@ public class Play {
 			for (int i = 0; i < this.cardsOnHand.size(); i++) {
 				 values[i] = this.cardsOnHand.get(i).getValue();
 				 suits[i] = this.cardsOnHand.get(i).getSuit();
+				 
+				 tets;
 			}
 		} else {
 			
