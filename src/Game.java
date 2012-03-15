@@ -16,6 +16,7 @@ public class Game
 		 int numberPlayers = 4;
 		 int numberShuffles = 4;
 		 int startPlayer = 2;
+		 Card demoCard = new Card("Ace", "Spades");					//for test - should remove
 		 
 		 // shuffling deck 4 times
 	     for (int i = 0; i < numberShuffles; i++) {
@@ -69,16 +70,24 @@ public class Game
 		 
 		 for (int round = 0; round < 8; round++) {
 
-			 List<Card> cardsOnTable = new ArrayList<Card>();			//List of individual Cards Played
-			 cardsOnTable = null;
+			 //cardsOnTable = null;
 			 System.out.println("");
 			 System.out.println("");
 			 System.out.println("Round - "+round);
+			 
+			 List<Card> cardsOnTable = new ArrayList<Card>();			//List of individual Cards Played
+			 cardsOnTable.add(demoCard); 								//for test - should remove
+
 
 			 for (int i=startPlayer; i<startPlayer+4; i++) {
-				 Play gamePlay = new Play (cardsOnTable, allPlayerHands.get(i).getHand());
+				 
+				 if (i>3) {
+					 startPlayer = startPlayer - 4;
+				 }
+				 
+				 Play gamePlay = new Play (cardsOnTable, allPlayerHands.get(i).getHand(), startPlayer, i+1);
 				 Card playedCard = gamePlay.throwCard(); 
-				 System.out.println(playedCard.getFace()+" of "+playedCard.getSuit());
+				 //System.out.println(playedCard.getFace()+" of "+playedCard.getSuit());
 			 }
 			 
 		 }
