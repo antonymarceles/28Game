@@ -87,7 +87,7 @@ public class Game
 					 startPlayer = startPlayer - 4;
 				 } 
 				 
-				 int incrementor = startPlayer+i+1;
+				 int incrementor = startPlayer+i;
 				 
 				 if (incrementor>3) {
 					 incrementor = incrementor - 4;
@@ -106,13 +106,13 @@ public class Game
 
 			 }
 
-			 cardsOnTable.remove(0);
+			 //cardsOnTable.remove(0);
 			 //Validate Winner
 			 Table tableAnalyst = new Table (cardsOnTable);			
 			 int pointsInRound = tableAnalyst.findTablePoints();		
 			 int winningPlayer = tableAnalyst.findWinningPlayer(startPlayer);		//Team A (0&2) or Team B (0&1)
 			 
-		    System.out.println("Winning Player --> "+winningPlayer);
+		     System.out.println("Winning Player --> "+winningPlayer);
 
 			 
 			 //Assign New Start Player (have to modify Play.java to ensure player can start game)			 

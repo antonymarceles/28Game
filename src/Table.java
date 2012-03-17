@@ -115,7 +115,7 @@ public class Table
 			winningPlayer = 3;
 		}
 		
-		winningPlayer = startPlayer+winningPlayer+1;
+		winningPlayer = startPlayer+winningPlayer;
 		 
 		if (winningPlayer>3) {
 			winningPlayer = winningPlayer - 4;
