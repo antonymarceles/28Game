@@ -18,53 +18,64 @@ public class Hand
     public void show()
     {
     	for (Card temp : hand) {
-    		System.out.print(temp.getFace()+" of "+temp.getSuit()+", ");
+    	System.out.print(temp.getFace()+" of "+temp.getSuit()+", ");
     	}
     } // end show method
     
     public List<Card> getHand() {
-		return hand;
+	return hand;
 	}
     
     public Card getHandCard(int index) {
-		return hand.get(index);
+	return hand.get(index);
 	}
 
 	public void setHand(List<Card> hand) {
-		this.hand = hand;
+	this.hand = hand;
 	}
 
 	public String getFaces(int item) {
-		return hand.get(item).getFace();
+	return hand.get(item).getFace();
 	}
 	
 	public int getPoints(int item) {
-		
-		 String faceValue = hand.get(item).getFace();
-		 int value = 0;
-		 if (faceValue.equals("Jack")) {
-			 value = 3;
-		 } else if  (faceValue.equals("Nine")) {
-			 value = 2;
-		 } else if  (faceValue.equals("Ace")) {
-			 value = 1;
-		 } else if  (faceValue.equals("Ten")) {
-			 value = 1;
-		 }
-		 
-		 return value;
+	
+	 String faceValue = hand.get(item).getFace();
+	 int value = 0;
+	 if (faceValue.equals("Jack")) {
+	 value = 3;
+	 } else if  (faceValue.equals("Nine")) {
+	 value = 2;
+	 } else if  (faceValue.equals("Ace")) {
+	 value = 1;
+	 } else if  (faceValue.equals("Ten")) {
+	 value = 1;
+	 }
+	 
+	 return value;
 	}
 
 	public void setFaces(int[] faces) {
-		this.faces = faces;
+	this.faces = faces;
 	}
     
 	public String getSuits(int item) {
-		return hand.get(item).getSuit();
+	return hand.get(item).getSuit();
 	}
 
 	public void setSuits(int[] suits) {
-		this.suits = suits;
+	this.suits = suits;
+	}
+	
+	public List<Card> removeCard(Card cardtoRemove) {
+	
+	for (int i = 0; i < this.hand.size(); i++) {
+	if ((this.hand.get(i).getFace().equals(cardtoRemove.getFace())) && (this.hand.get(i).getSuit().equals(cardtoRemove.getSuit()))) {
+	this.hand.remove(i);
+	}	
+	}
+	
+	return this.hand;
 	}
 	
     

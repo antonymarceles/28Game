@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Table 
 {
@@ -61,6 +63,65 @@ public class Table
 	
 	public void setSuites(int[] suits) {
 		this.suits = suits;
+	}
+	
+	public int findTablePoints() {		
+		int points = 0;
+		for (int i = 0; i<this.table.size(); i++) {
+			points = points + this.table.get(i).getPoint();
+		}
+		return points;
+	}
+	
+	public int findWinningPlayer(int startPlayer) {
+		int winningPlayer = 99;
+		String currentWinner = "";
+		String openingSuit = this.table.get(0).getSuit();
+		
+		Map<Integer,Integer> trumpCards = new HashMap<Integer,Integer> ();
+		Map<Integer,Integer> oSuitCards = new HashMap<Integer,Integer> ();
+		Map<Integer,Integer> otherCards = new HashMap<Integer,Integer> ();
+
+		for (int i = 0; i<this.table.size(); i++) {
+			if (this.table.get(i).getSuit() == Trump.trumpSuit) {
+				trumpCards.put(i, this.table.get(i).getValue());
+			} else if (this.table.get(i).getSuit() == openingSuit) {
+				oSuitCards.put(i, this.table.get(i).getValue());
+			} else {
+				otherCards.put(i, this.table.get(i).getValue());
+			}
+		}
+		
+		if (trumpCards.size() == 0) {
+			if (oSuitCards.size() == 0) {
+				otherCards = MapUtil.sortByValue( otherCards );			//Find Player with higest Card on table. 
+				currentWinner = otherCards.keySet().toArray()[otherCards.size()-1].toString();
+			} else {
+				oSuitCards = MapUtil.sortByValue( oSuitCards );			//Find Player with higest Card on table. 
+				currentWinner = oSuitCards.keySet().toArray()[oSuitCards.size()-1].toString();
+			}
+		} else {
+				trumpCards = MapUtil.sortByValue( trumpCards );			//Find Player with higest Card on table. 
+				currentWinner = trumpCards.keySet().toArray()[trumpCards.size()-1].toString();		
+		}
+		
+		if (currentWinner.equals("0")) {
+			winningPlayer = 0;
+		} else if (currentWinner.equals("1")) {
+			winningPlayer = 1;
+		} else if (currentWinner.equals("2")) {
+			winningPlayer = 2;
+		} else if (currentWinner.equals("3")) {
+			winningPlayer = 3;
+		}
+		
+		winningPlayer = startPlayer+winningPlayer+1;
+		 
+		if (winningPlayer>3) {
+			winningPlayer = winningPlayer - 4;
+		} 
+		
+		return winningPlayer;
 	}
 	
     
